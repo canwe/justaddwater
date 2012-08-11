@@ -46,6 +46,6 @@ Once you've done that and generated an App ID and API key, you can add those val
 
 #### Email Integration
 
-I'm using this https://developers.google.com/appengine/docs/python/mail/sendingmail.
+I'm using this https://developers.google.com/appengine/docs/java/mail/usingjavamail.
 
 
