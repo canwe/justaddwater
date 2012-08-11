@@ -12,13 +12,13 @@ It builds on the following projects:
  * [Wicket-CDI](https://github.com/42Lines/wicket-cdi)
  * [Twitter Bootstrap](http://twitter.github.com/bootstrap/)
 
-You can try it out at [quickstarter.armhold.com](http://quickstarter.armhold.com).
+You can try it out at [just-add-water.appspot.com](http://just-add-water.appspot.com).
 
 
 ### Features
 
  * local accounts with passwords, secured via bcrypt
- * "login with Facebook" authentication, using Facebook OAuth 2.0
+ * "login with Facebook" authentication, using Facebook OAuth 2.0 (in dev)
  * "change password" page
  * "forgot my password" page
  * one-time-login support (with expiration) via generated tokens
@@ -33,7 +33,7 @@ You'll first need to build & install wicket-cdi:
 
 Now you can check out Just Add Water:
 
- * $ git clone git@github.com:armhold/justaddwater.git
+ * $ git clone git@github.com:canwe/justaddwater.git
 
 #### Facebook Integration
 
@@ -46,10 +46,6 @@ Once you've done that and generated an App ID and API key, you can add those val
 
 #### Email Integration
 
-In order to support email notifications you'll need to either sign up with [ElasticEmail](http://elasticemail.com) 
-or integrate your own email gateway. I chose ElasticEmail simply because I have other projects that use them,
-their RESTful API is easy to integrate, and they offer 1000 free emails to start.
-
-Add your Elastic Email username and API key to `ElasticEmail.java`.
+I'm using this https://developers.google.com/appengine/docs/python/mail/sendingmail.
 
 
