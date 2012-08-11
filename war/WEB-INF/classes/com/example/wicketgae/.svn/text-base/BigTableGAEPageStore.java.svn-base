@@ -1,0 +1,118 @@
+package com.example.wicketgae;
+
+import java.util.List;
+import java.util.logging.Logger;
+
+import org.apache.wicket.Page;
+import org.apache.wicket.protocol.http.pagestore.AbstractPageStore;
+
+import com.example.Repository;
+import com.google.inject.Inject;
+
+public class BigTableGAEPageStore extends AbstractPageStore {
+
+	private static final Logger log = Logger.getLogger(BigTableGAEPageStore.class.getName());
+
+	@Inject
+	private Repository<WicketPage> wpRepo;
+
+	@Inject
+	private WicketPageQueries wpQueries;
+
+	private String applicationKey;
+
+	public BigTableGAEPageStore(String applicationKey) {
+		this.applicationKey = applicationKey;
+	}
+
+	@Override
+	public boolean containsPage(String sessionId, String pageMapName, int pageId, int pageVersion) {
+		log.info("containsPage: [sessionId=" + sessionId + ", pageMapName=" + pageMapName + ", pageId=" + pageId
+				+ ", pageVersion=" + pageVersion + "]");
+
+		boolean value = wpQueries.containesPage(sessionId, pageMapName, pageId, pageVersion);
+
+		log.info("containsPage: result=" + value);
+
+		return value;
+	}
+
+	@Override
+	public <T> Page getPage(String sessionId, String pagemap, int id, int versionNumber, int ajaxVersionNumber) {
+		log.info("getPage: [sessionId=" + sessionId + ", pageMapName=" + pagemap + ", pageId=" + id + ", pageVersion="
+				+ versionNumber + ", ajaxVersion=" + ajaxVersionNumber + "]");
+
+		WicketPage wp = wpQueries.findPage(sessionId, pagemap, id, versionNumber, ajaxVersionNumber);
+
+		Page page = convertToPage(wp, -1);
+
+		log.info("getPage RESULT: [sessionId=" + wp.getSessionId() + ", pageMapName=" + wp.getPageMapName()
+				+ ", pageId=" + page.getNumericId() + ", pageVersion=" + page.getCurrentVersionNumber()
+				+ ", ajaxVersion=" + page.getAjaxVersionNumber() + "]");
+
+		return page;
+	}
+
+	private Page convertToPage(WicketPage wp, int versionNumber) {
+		return wp.getSerializedPage();
+	}
+
+	@Override
+	public void destroy() {
+	}
+
+	@Override
+	public void pageAccessed(String sessionId, Page page) {
+	}
+
+	@Override
+	public void removePage(String sessionId, String pagemap, int id) {
+		final List<WicketPage> pages = wpQueries.findPages(sessionId, pagemap, id);
+		wpRepo.runInTransaction(new Runnable() {
+			@Override
+			public void run() {
+				for (WicketPage wp : pages) {
+					wpRepo.delete(wp);
+				}
+			}
+		});
+	}
+
+	@Override
+	public void storePage(String sessionId, Page page) {
+		final WicketPage wp = convertToWicketPage(page);
+		wp.setSessionId(sessionId);
+		wp.setApplicationKey(applicationKey);
+		wpRepo.runInTransaction(new Runnable() {
+			@Override
+			public void run() {
+				wpRepo.persist(wp);
+			}
+		});
+	}
+
+	private WicketPage convertToWicketPage(Page page/* , SerializedPage sp */) {
+		WicketPage wp = new WicketPage();
+		wp.setAjaxVersionNumber(page.getAjaxVersionNumber());
+		wp.setPageId(page.getNumericId());
+		wp.setPageVersion(page.getCurrentVersionNumber());
+		wp.setPageMapName(page.getPageMapName());
+		wp.setSerializedPage(page);
+		return wp;
+	}
+
+	@Override
+	public void unbind(String sessionId) {
+		final List<WicketPage> pages = wpQueries.findPages(sessionId);
+
+		wpRepo.runInTransaction(new Runnable() {
+			@Override
+			public void run() {
+				for (WicketPage wp : pages) {
+					wpRepo.delete(wp);
+				}
+			}
+		});
+	}
+
+}

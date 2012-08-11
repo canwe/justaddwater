@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2012 George Armhold
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  under the License.
+-->
+<html lang="en-US" xmlns:wicket="http://wicket.apache.org">
+<head>
+    <meta charset="utf-8">
+    <title>Just Add Water -- sign up</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+</head>
+
+<body>
+
+<div wicket:id="header"/>
+
+<div class="container">
+
+    <div class="content">
+
+        <section id="forms">
+            <div class="page-header">
+                <h1>Login to Just Add Water</h1>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+
+            <div class="row">
+
+                <div class="span10">
+                    <form wicket:id="form">
+                        <fieldset>
+                            <span wicket:id="feedback" style="color: red;">[[ feedback ]]</span>
+
+                            <div class="clearfix">
+                                <label for="xlInput" >Username:</label>
+
+                                <div class="input">
+                                    <input wicket:id="username" class="xlarge" name="xlInput" size="20" type="text"/>
+                                </div>
+                            </div>
+
+                            <div class="clearfix">
+                                <label for="password">Password:</label>
+
+                                <div class="input">
+                                    <input wicket:id="password" class="xlarge" name="password" size="16" type="password"/>
+                                </div>
+                            </div>
+
+                            <div class="actions">
+                                <input type="submit" class="btn primary" value="Login">&nbsp;
+                            </div>
+                            <br/>
+                            <br/>
+
+                            <div class="clearfix">
+                                <div class="input">
+                                    <h4>Need an account? You can <a href="/signup">sign up here</a>.</h4>
+                                </div>
+                            </div>
+
+                            <div class="clearfix">
+                                <div class="input">
+                                    <h4>Forgot your password? You can <a href="/forgot">reset it here</a>.</h4>
+                                </div>
+                            </div>
+
+                        </fieldset>
+
+                    </form>
+                </div>
+            </div>
+
+            <br/>
+
+
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; Your Name 2012</p>
+    </footer>
+
+</div>
+<!-- /container -->
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+      http://java.sun.com/xml/ns/j2ee
+      http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+	<display-name>justaddwater</display-name>
+
+	<filter>
+		<filter-name>jdo-pm</filter-name>
+		<filter-class>com.example.jdo.PersistenceManagerFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>jdo-pm</filter-name>
+		<url-pattern>*</url-pattern>
+	</filter-mapping>
+
+	<listener>
+		<listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>net.ftlines.blog.cdidemo.cdi.ApplicationLifecycleNotifier</listener-class>
+	</listener>
+	<filter>
+		<filter-name>wicket.justaddwater</filter-name>
+		<filter-class>org.apache.wicket.protocol.http.WicketFilter</filter-class>
+		<init-param>
+			<param-name>applicationClassName</param-name>
+			<param-value>com.example.justaddwater.web.app.WicketApplication</param-value>
+		</init-param>
+		<init-param>
+			<param-name>configuration</param-name>
+			<param-value>deployment</param-value>
+		</init-param>
+		<init-param>
+			<param-name>deployconfiguration</param-name>
+			<param-value>appspot</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>wicket.justaddwater</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>ERROR</dispatcher>
+	</filter-mapping>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/404</location>
+	</error-page>
+</web-app>

@@ -80,12 +80,12 @@
 		<dependency>
 			<groupId>org.jboss.weld</groupId>
 			<artifactId>weld-core</artifactId>
-			<version>1.1.4.Final</version>
+			<version>1.1.8.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>org.jboss.weld.servlet</groupId>
 			<artifactId>weld-servlet-core</artifactId>
-			<version>1.1.4.Final</version>
+			<version>1.1.8.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.el</groupId>
@@ -131,6 +131,16 @@
 			<artifactId>wicket-datetime</artifactId>
 			<version>${wicket.version}</version>
 		</dependency>
+                <dependency>
+                   <groupId>org.apache.wicket</groupId> 
+                   <artifactId>wicket-guice</artifactId> 
+                   <version>${wicket.version}</version> 
+                </dependency>
+<dependency>
+  <groupId>com.google.inject.extensions</groupId> 
+  <artifactId>guice-servlet</artifactId> 
+  <version>3.0</version> 
+  </dependency>
 
 		<!-- LOGGING DEPENDENCIES - LOG4J -->
 		<dependency>
@@ -250,9 +260,23 @@
 			</snapshots>
 		</repository>
 		<repository>
-			<id>jboss</id>
-			<url>https://repository.jboss.org/nexus/content/groups/public/</url>
+			<id>jboss-public</id>
+			<url>http://repository.jboss.org/nexus/content/groups/public</url>
+		</repository>   
+		<repository>
+			<id>jboss-releases</id>
+			<url>http://repository.jboss.org/nexus/content/repositories/releases</url>
 		</repository>
-	</repositories>
+        <repository>
+            <id>visural-common</id>
+            <name>visural-common</name>
+            <url>http://visural-common.googlecode.com/svn/trunk/visural-common/maven/</url>
+        </repository>
+        <repository>
+            <id>visural-wicket</id>
+            <name>visural-wicket</name>
+            <url>http://visural-wicket.googlecode.com/svn/trunk/visural-wicket/maven/</url>
+        </repository>
+    </repositories>
 
 </project>

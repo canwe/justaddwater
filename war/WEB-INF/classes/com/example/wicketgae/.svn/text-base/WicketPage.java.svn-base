@@ -1,0 +1,112 @@
+package com.example.wicketgae;
+
+import java.io.Serializable;
+
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
+import org.apache.wicket.Page;
+
+import com.google.appengine.api.datastore.Key;
+
+@PersistenceCapable(identityType = IdentityType.APPLICATION)
+public class WicketPage implements Serializable {
+
+	private static final long serialVersionUID = -8126454392604378517L;
+
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key id;
+
+	@Persistent
+	private String applicationKey;
+
+	@Persistent
+	private String sessionId;
+
+	@Persistent
+	private String pageMapName;
+
+	@Persistent
+	private int pageId;
+
+	@Persistent
+	private int pageVersion;
+
+	@Persistent
+	private int ajaxVersionNumber;
+
+	@Persistent(serialized = "true")
+	private Page serializedPage;
+
+	public WicketPage() {
+	}
+
+	public String getApplicationKey() {
+		return applicationKey;
+	}
+
+	public void setApplicationKey(String applicationKey) {
+		this.applicationKey = applicationKey;
+	}
+
+	public Key getId() {
+		return id;
+	}
+
+	public void setId(Key id) {
+		this.id = id;
+	}
+
+	public String getSessionId() {
+		return sessionId;
+	}
+
+	public void setSessionId(String sessionId) {
+		this.sessionId = sessionId;
+	}
+
+	public String getPageMapName() {
+		return pageMapName;
+	}
+
+	public void setPageMapName(String pageMapName) {
+		this.pageMapName = pageMapName;
+	}
+
+	public int getPageId() {
+		return pageId;
+	}
+
+	public void setPageId(int pageId) {
+		this.pageId = pageId;
+	}
+
+	public int getPageVersion() {
+		return pageVersion;
+	}
+
+	public void setPageVersion(int pageVersion) {
+		this.pageVersion = pageVersion;
+	}
+
+	public int getAjaxVersionNumber() {
+		return ajaxVersionNumber;
+	}
+
+	public void setAjaxVersionNumber(int ajaxVersionNumber) {
+		this.ajaxVersionNumber = ajaxVersionNumber;
+	}
+
+	public Page getSerializedPage() {
+		return serializedPage;
+	}
+
+	public void setSerializedPage(Page serializedPage) {
+		this.serializedPage = serializedPage;
+	}
+
+}

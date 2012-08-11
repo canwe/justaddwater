@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2012 George Armhold
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  under the License.
+-->
+<html lang="en-US" xmlns:wicket="http://wicket.apache.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Just Add Water - account page</title>
+
+    <meta name="description" content="Just Add Water">
+    <meta name="author" content="Your Name">
+
+</head>
+
+<body>
+
+<div wicket:id="header"/>
+
+<div class="container">
+
+    <!-- Main hero unit for a primary marketing message or call to action -->
+    <div class="hero-unit">
+        <h1>Account Page</h1>
+        <br/>
+        <br/>
+
+        <p>
+            You are logged in as: <span wicket:id="username"/>
+        </p>
+        <br/>
+        <br/>
+        <br/>
+        <p>
+            Account Type: <span wicket:id="accountType"></span>.
+        </p>
+
+        <div wicket:id="changePassword">
+            <p>
+                Click <a href="/change">here to change your password</a>.
+            </p>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; Your Name 2012</p>
+    </footer>
+
+</div> <!-- /container -->
+
+</body>
+</html>
